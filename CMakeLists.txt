@@ -226,10 +226,10 @@ find_package_message(X11 "Found X11: ${X11_X11_LIB}"
     "[${X11_X11_LIB}][${X11_INCLUDE_DIR}]")
 include(FindCUDA)
 
-option(PRINT_HOST_INFO "Host Info" ON)
+option(PRINT_HOST_INFO "Host Info" OFF)
 
-#set(PRINT_HOST_INFO ON)
-include(host_info.cmake)
-message(${PRINT_HOST_INFO})
-
+if(${PRINT_HOST_INFO})
+    include(host_info.cmake)
+    message(${PRINT_HOST_INFO})
+endif()
 
