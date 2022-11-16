@@ -1,0 +1,42 @@
+
+message("\n ---- Host System Info -----")
+
+
+SET(HOST_INFO_VAR NUMBER_OF_LOGICAL_CORES
+    NUMBER_OF_PHYSICAL_CORES
+    HOSTNAME
+    FQDN
+    TOTAL_VIRTUAL_MEMORY
+    AVAILABLE_VIRTUAL_MEMORY
+    TOTAL_PHYSICAL_MEMORY
+    AVAILABLE_PHYSICAL_MEMORY
+    IS_64BIT
+    HAS_FPU
+    HAS_MMX
+    HAS_MMX_PLUS
+    HAS_SSE
+    HAS_SSE2
+    HAS_SSE_FP
+    HAS_SSE_MMX
+    HAS_AMD_3DNOW
+    HAS_AMD_3DNOW_PLUS
+    HAS_IA64
+    HAS_SERIAL_NUMBER
+    PROCESSOR_SERIAL_NUMBER
+    PROCESSOR_NAME
+    PROCESSOR_DESCRIPTION
+    OS_NAME
+    OS_RELEASE
+    OS_VERSION
+    OS_PLATFORM)
+
+foreach(VAR IN LISTS HOST_INFO_VAR)
+    cmake_host_system_information(RESULT TMP_VAR QUERY ${VAR})
+    message("---- ${VAR}=${TMP_VAR}")
+endforeach()
+
+cmake_host_system_information(RESULT DISTRO QUERY DISTRIB_INFO)
+
+foreach(VAR IN LISTS DISTRO)
+  message(STATUS "${VAR}=`${${VAR}}`")
+endforeach()
